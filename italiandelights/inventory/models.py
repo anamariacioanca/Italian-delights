@@ -6,15 +6,23 @@ class Ingredient(models.Model):
     quantity = models.FloatField(default=0)
     unit = models.CharField(max_length=10)
 
+    def __str__(self):
+        return f"{self.name}"
+
 class MenuItem(models.Model):
     title = models.CharField(max_length=75)
     price = models.FloatField(help_text="Enter the menu price")
 
-class RecipeRequirement(models.Model):
-    menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
-    ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
-    quantity = models.FloatField(help_text="Enter the amount of ingredient required to create the menu item")      
+    def __str__(self):
+        return f"{self.title}"
+        
 
+class Recipe(models.Model):
+    menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
+    ingredients = models.ManyToManyField(Ingredient)
+    quantity = models.PositiveIntegerField(default=1)
+    unit = models.CharField(max_length=10, null=True, blank=True)
+    
 class Order(models.Model):
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
