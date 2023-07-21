@@ -21,8 +21,8 @@ class Recipe(models.Model):
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
     ingredients = models.ManyToManyField(Ingredient)
     quantity = models.PositiveIntegerField(default=1)
-    unit = models.CharField(max_length=10, null=True, blank=True)
+    unit = models.CharField(max_length=10, default="grams")
     
 class Order(models.Model):
-    menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
+    menu_items = models.ManyToManyField(MenuItem)
     timestamp = models.DateTimeField(auto_now_add=True)
