@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
+from .forms import LoginForm
 from django.db.models import Sum
 from .models import Ingredient, MenuItem, Order, Recipe
 # Create your views here.
@@ -18,3 +20,20 @@ def menu_view(request):
 def total_sales_view(request):
     total_sales = Order.objects.aggregate(Sum('menu_items__price'))['menu_items__price__sum']
     return render(request, 'total_sales.html', {'total_sales': total_sales})
+
+def login_view(request):
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+            if user:
+                login(request, user)
+                return redirect("/")
+    else:
+        form = LoginForm()    
+    context = {
+        "form": LoginForm()
+    }
+    return render(request, "inventory/login.html", context)
