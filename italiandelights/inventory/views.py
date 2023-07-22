@@ -28,12 +28,16 @@ def login_view(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user = authenticate(request, username=username, password=password)
-            if user:
+            if user is not None:
                 login(request, user)
-                return redirect("/")
+                return redirect("https://www.google.com")  # Redirect on successful login
+            else:
+                # Invalid credentials, display an error message
+                error_message = "Invalid credentials. Please try again."
+                return render(request, "inventory/login.html", {'form': form, 'error_message': error_message})
     else:
         form = LoginForm()    
     context = {
-        "form": LoginForm()
+        "form": form
     }
     return render(request, "inventory/login.html", context)

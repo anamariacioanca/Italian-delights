@@ -1,5 +1,7 @@
 {% load static %}
 
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -19,10 +21,13 @@
   <body class="text-center">
     
     <main class="login">
-      <form method="post" class="form-login">
+      <form method="post" class="form-login" action="">
           {% csrf_token %}
           
           <h2>Please log in</h2>
+          {% if error_message %}
+          <p>{{ error_message }}</p>
+          {% endif %}
           <label for="username">Username:</label>
           <input type="text" id="username" name="username"><br>
           <label for="password">Password:</label>
