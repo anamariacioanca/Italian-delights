@@ -16,15 +16,27 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from inventory.views import inventory_view, menu_view, orders_view, total_sales_view, login_view, main_view, recipe_view
+from inventory import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('inventory', inventory_view, name='inventory'),
-    path('menu', menu_view, name='menu'),
-    path('recipe', recipe_view, name='recipe'),
-    path('orders', orders_view, name='orders'),
-    path('total_revenue', total_sales_view, name='total_revenue'),
-    path('login', login_view, name='login'),
-    path("", main_view),
+    path("ingredients", views.IngredientList.as_view(), name="ingredients"),
+    path("ingredient/create", views.IngredientCreate.as_view(), name="ingredientcreate"),
+    path("ingredients/<pk>", views.IngredientUpdate.as_view(), name="ingredientupdate"),
+    path("ingredients/<pk>", views.IngredientDelete.as_view(), name="ingredientdelete"),
+    path("menuitems", views.MenuItemList.as_view(), name="menuitems"),
+    path("menuitem/create", views.MenuItemCreate.as_view(), name="menuitemcreate"),
+    path("menuitem/<pk>", views.MenuItemUpdate.as_view(), name="menuitemupdate"),
+    path("menuitem/<pk>", views.MenuItemDelete.as_view(), name="menuitemdelete"),
+    path("recipes", views.RecipeList.as_view(), name="recipes"),
+    path("recipe/create", views.RecipeCreate.as_view(), name="recipecreate"),
+    path("recipe/<pk>", views.RecipeUpdate.as_view(), name="recipeupdate"),
+    path("recipe/<pk>", views.RecipeDelete.as_view(), name="recipedelete"),
+    path('orders', views.OrderList.as_view(), name='orders'),
+    path("order/create", views.OrderCreate.as_view(), name="ordercreate"),
+    path("order/<pk>", views.OrderUpdate.as_view(), name="orderupdate"),
+    path("order/<pk>", views.OrderDelete.as_view(), name="orderdelete"),
+    path('sales', views.total_sales_view, name='sales'),
+    path('login', views.login_view, name='login'),
+    path("", views.main_view),
 ]
