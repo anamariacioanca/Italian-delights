@@ -16,13 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from inventory.views import inventory_view, menu_view, orders_view, total_sales_view, login_view
+from inventory.views import inventory_view, menu_view, orders_view, total_sales_view, login_view, main_view, recipe_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('inventory', inventory_view, name='inventory'),
     path('menu', menu_view, name='menu'),
+    path('recipe', recipe_view, name='recipe'),
     path('orders', orders_view, name='orders'),
     path('total_revenue', total_sales_view, name='total_revenue'),
-    path('login', login_view, name='login')
+    path('login', login_view, name='login'),
+    path("", main_view),
 ]
