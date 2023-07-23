@@ -1,1 +1,27 @@
 {% extends "inventory/base.html" %}
+{% block title %} Orders - {{ block.super }}{% endblock %}
+
+{% block content %}
+  <h2>Orders</h2>
+  <a href="{% url 'ordercreate' %}"><button class="btn">Add order</button></a>
+  <table id="orders">
+    <tr>
+      <th>Menu Items</th>
+      <th>Time</th>
+      <th> </th>
+      <th> </th>
+    </tr>
+    {% for order in object_list %}
+    <tr>
+      <td>
+        {% for item in order.menu_items.all %}
+          {{ item.title }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+      </td>
+      <td>{{ order.timestamp }}</td>
+      <td><a href="{% url 'orderupdate' order.pk %}"><button>Edit</button></a></td>
+      <td><a href="{% url 'orderdelete' order.pk %}"><button>Delete</button></a></td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
