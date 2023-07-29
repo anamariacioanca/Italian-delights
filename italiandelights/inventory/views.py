@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse_lazy
-from .forms import LoginForm, IngredientForm
+from .forms import LoginForm, IngredientForm, MenuItemForm
 from django.db.models import Sum
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -12,7 +12,6 @@ from .models import Ingredient, MenuItem, Order, Recipe
 #     ingredients = Ingredient.objects.all()
 #     return render(request, 'inventory/inventory.html', {'ingredients': ingredients})
 
-
 class IngredientList(ListView):
   model = Ingredient
   template_name = "inventory/ingredients.html"
@@ -22,7 +21,7 @@ class IngredientCreate(CreateView):
   template_name = "inventory/ingredient_create_form.html"
   form_class = IngredientForm
   success_url = reverse_lazy("ingredients")
-  
+
 class IngredientUpdate(UpdateView):
   model = Ingredient
   template_name = "inventory/ingredient_update_form.html"  
@@ -45,36 +44,41 @@ class MenuItemList(ListView):
 class MenuItemCreate(CreateView):
   model = MenuItem
   template_name = "inventory/menuitem_create_form.html"
-  fields = ["title", "price"]  
+  form_class = MenuItemForm 
+  success_url = reverse_lazy("menuitems")
 
 class MenuItemUpdate(UpdateView):
   model = MenuItem
   template_name = "inventory/menuitem_update_form.html"  
+  form_class = MenuItemForm 
+  success_url = reverse_lazy("menuitems")
 
 class MenuItemDelete(DeleteView):
   model = MenuItem
   template_name = "inventory/menuitem_delete_form.html"  
+  success_url = reverse_lazy("menuitems")
 
 # def recipe_view(request):
 #     recipe = Recipe.objects.all()
 #     return render(request, 'inventory/recipe.html', {'recipe': recipe})
 
 class RecipeList(ListView):
-  model = Recipe
-  template_name = "inventory/recipes.html"
+    model = Recipe
+    template_name = "inventory/recipes.html"
 
 class RecipeCreate(CreateView):
-  model = Recipe
-  template_name = "inventory/recipe_create_form.html"
-  fields = ["menu_item", "ingredient", "quantity", "unit"]  
-
+    model = Recipe
+    template_name = "inventory/recipe_create_form.html"
+    fields = ["menu_item", "ingredient", "quantity", "unit"] 
+    
 class RecipeUpdate(UpdateView):
-  model = Recipe
-  template_name = "inventory/recipe_update_form.html"  
+    model = Recipe
+    template_name = "inventory/recipe_update_form.html"
 
 class RecipeDelete(DeleteView):
-  model = Recipe
-  template_name = "inventory/recipe_delete_form.html"  
+    model = Recipe
+    template_name = "inventory/recipe_delete_form.html"
+   
 
 # def orders_view(request):
 #     orders = Order.objects.all()
