@@ -1,0 +1,11 @@
+{% extends "inventory/base.html" %}
+{% block title %} Edit Ingredient - {{ block.super }}{% endblock %}
+
+{% block content %}
+  <h2>Edit Ingredient</h2>
+  <form method="post" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Changes</button>
+  </form>
+{% endblock %}

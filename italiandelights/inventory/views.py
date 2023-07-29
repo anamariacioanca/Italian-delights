@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from .forms import LoginForm
+from django.urls import reverse_lazy
+from .forms import LoginForm, IngredientForm
 from django.db.models import Sum
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -19,15 +20,19 @@ class IngredientList(ListView):
 class IngredientCreate(CreateView):
   model = Ingredient
   template_name = "inventory/ingredient_create_form.html"
-  fields = ["name", "quantity", "unit"]  
-
+  form_class = IngredientForm
+  success_url = reverse_lazy("ingredients")
+  
 class IngredientUpdate(UpdateView):
   model = Ingredient
   template_name = "inventory/ingredient_update_form.html"  
+  fields = ["quantity"]  
+  success_url = reverse_lazy("ingredients")
 
 class IngredientDelete(DeleteView):
   model = Ingredient
   template_name = "inventory/ingredient_delete_form.html"  
+  success_url = reverse_lazy("ingredients")
 
 # def menu_view(request):
 #     menu_items = MenuItem.objects.all()
