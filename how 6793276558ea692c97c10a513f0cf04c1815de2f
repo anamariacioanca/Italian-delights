@@ -1,0 +1,107 @@
+[33mcommit 6793276558ea692c97c10a513f0cf04c1815de2f[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Anamaria Cioanca <anamaria.cioanca.rus@gmail.com>
+Date:   Sat Jul 29 15:24:46 2023 +0300
+
+    Add CRUD forms for Menu Items
+
+[33mcommit e9b9a616fe3ac2e374541d2b2037b1333f96c41e[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Anamaria Cioanca <anamaria.cioanca.rus@gmail.com>
+Date:   Sat Jul 29 12:34:06 2023 +0300
+
+    Update and correct URL paths
+
+[33mcommit 5b0cc0bcac345ec4935a36d5e4a13221c4bf13f7[m
+Author: Anamaria Cioanca <anamaria.cioanca.rus@gmail.com>
+Date:   Sat Jul 29 12:33:25 2023 +0300
+
+    Add CRUD forms for Ingredient
+
+[33mcommit f4e56a62a6131a67fd93ac9819523cbedd11de93[m
+Author: Anamaria Cioanca <anamaria.cioanca.rus@gmail.com>
+Date:   Sat Jul 29 12:25:43 2023 +0300
+
+    Add message in base.html
+
+[33mcommit 51bdcc0c9ffe9fd0093aff471349d34b871255c8[m
+Author: Anamaria Cioanca <anamaria.cioanca.rus@gmail.com>
+Date:   Sun Jul 23 17:50:01 2023 +0300
+
+    Create an modify templates
+
+[33mcommit 27be18843beea1f2b2e1555a870c9ac0e44209cf[m
+Author: Anamaria Cioanca <anamaria.cioanca.rus@gmail.com>
+Date:   Sun Jul 23 17:48:00 2023 +0300
+
+    Create class views
+
+[33mcommit ac4caaa958e89d382af7e096fb225e80514629b0[m
+Author: Anamaria Cioanca <anamaria.cioanca.rus@gmail.com>
+Date:   Sun Jul 23 15:39:27 2023 +0300
+
+    Link CSS to base.html
+
+[33mcommit dd356a2c070707f732543d2a6c87f512711d8e2a[m
+Author: Anamaria Cioanca <anamaria.cioanca.rus@gmail.com>
+Date:   Sun Jul 23 15:37:27 2023 +0300
+
+    Modify CSS
+
+[33mcommit c33023558a3e86852c48621f2cfdae230f61e478[m
+Author: Anamaria Cioanca <anamaria.cioanca.rus@gmail.com>
+Date:   Sun Jul 23 11:51:50 2023 +0300
+
+    Add base template
+
+[33mcommit b862eb7d9a90077adf22f5da763e026378d47d3b[m
+Author: Anamaria Cioanca <anamaria.cioanca.rus@gmail.com>
+Date:   Sat Jul 22 18:06:44 2023 +0300
+
+    Add login form error message
+
+[33mcommit 826a80d37c0089991ea9ce6a0fa3de2d165482ae[m
+Author: Anamaria Cioanca <anamaria.cioanca.rus@gmail.com>
+Date:   Sat Jul 22 17:01:06 2023 +0300
+
+    Add login
+
+[33mcommit 8cd4b7cd268289633d202aad6e4597eb78ebdee4[m
+Author: Anamaria Cioanca <anamaria.cioanca.rus@gmail.com>
+Date:   Fri Jul 21 14:15:41 2023 +0300
+
+    Add views
+
+[33mcommit 5123efc430ee65d639a02a25a7b20f9541631c3b[m
+Author: Anamaria Cioanca <anamaria.cioanca.rus@gmail.com>
+Date:   Thu Jul 20 14:36:58 2023 +0300
+
+    Modify models structure
+
+[33mcommit bf1c051edf500cdf0f0276f740d74e3d4126baca[m
+Author: Anamaria Cioanca <anamaria.cioanca.rus@gmail.com>
+Date:   Thu Jul 20 12:57:20 2023 +0300
+
+    Add automatic code reload in Docker
+
+[33mcommit ca53a01e159f5cc573ee8608b8c14e1fc24d93fd[m
+Author: Anamaria Cioanca <anamaria.cioanca.rus@gmail.com>
+Date:   Thu Jul 20 10:55:51 2023 +0300
+
+    Start Django app
+
+[33mcommit 25b07d489bf4b113e474503f438f89714eb2f3a9[m
+Author: Anamaria Cioanca <anamaria.cioanca.rus@gmail.com>
+Date:   Thu Jul 20 10:43:45 2023 +0300
+
+    Dockerize project
+
+[33mcommit 451607ebd111b44e988aec6873eeed56ce4c550c[m
+Author: Anamaria Cioanca <anamaria.cioanca.rus@gmail.com>
+Date:   Tue Jul 18 13:48:50 2023 +0300
+
+    Start project
+
+[33mcommit 707a7e18e5aac08f51bf726fa1644f6b059eef66[m
+Author: Anamaria Cioanca (Rus) <anamaria.cioanca.rus@gmail.com>
+Date:   Tue Jul 18 13:34:13 2023 +0300
+
+    Initial commit
