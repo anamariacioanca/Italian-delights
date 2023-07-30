@@ -1,6 +1,7 @@
 from django.db import models
 
 # Create your models here.
+
 class Ingredient(models.Model):
     name = models.CharField(max_length=50)
     quantity = models.FloatField(default=0)
@@ -12,16 +13,19 @@ class Ingredient(models.Model):
 class MenuItem(models.Model):
     title = models.CharField(max_length=75)
     price = models.FloatField(help_text="Enter the menu price")
+    ingredients = models.ManyToManyField(Ingredient, through='MenuItemIngredient')
 
     def __str__(self):
         return f"{self.title}"
-        
 
-class Recipe(models.Model):
+class MenuItemIngredient(models.Model):
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
-    ingredients = models.ManyToManyField(Ingredient)
-    quantity = models.PositiveIntegerField(default=1)
-    unit = models.CharField(max_length=10, default="grams")
+    ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
+    quantity = models.FloatField(default=0)
+
+    def __str__(self):
+        return f"{self.menu_item.title} - {self.ingredient.name} - {self.quantity}"
+
     
 class Order(models.Model):
     menu_items = models.ManyToManyField(MenuItem)
