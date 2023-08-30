@@ -1,8 +1,8 @@
 from django import forms
-from .models import Ingredient, MenuItem, MenuItemIngredient
+from .models import Ingredient, MenuItem, Order
 
 class LoginForm(forms.Form):
-    username = forms.CharField(max_length=50)
+    username = forms.CharField(max_length=100)
     password = forms.CharField(max_length=100, widget=forms.PasswordInput)
 
 class IngredientForm(forms.ModelForm):
@@ -15,8 +15,8 @@ class MenuItemForm(forms.ModelForm):
         model = MenuItem
         fields = ['title', 'price']
 
-class MenuItemIngredientForm(forms.ModelForm):
+class OrderForm(forms.ModelForm):
     class Meta:
-        model = MenuItemIngredient
-        fields = ['ingredient', 'quantity']
+        model = Order
+        fields = ["menu_items"]      
 
