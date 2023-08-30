@@ -1,1 +1,23 @@
 {% extends "inventory/base.html" %}
+{% block title %}Total Sales - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2 class="mt-5">Total Sales</h2>
+  <table class="table table-bordered table-sm">
+    <tr class="bg-info">
+      <th>Date</th>
+      <th>Total Order Price</th>
+      <th>Total All Orders Price</th>
+    </tr>
+    {% for totalsales in object_list %}
+    <tr>
+      <td>{{ totalsales.date }}</td>
+      <td>{{ totalsales.total_order_price }}</td>
+      <td>{{ totalsales.total_all_orders_price }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
+
+
