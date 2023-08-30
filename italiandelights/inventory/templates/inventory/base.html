@@ -7,59 +7,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <title>{% block title %} Italian Delights  {% endblock %}</title>
+    <title>{% block title %} Italian Delights {% endblock %}</title>
     <!-- Bootstrap core CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <!-- Custom styles for this template -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
   </head>
   <body class="d-flex flex-column h-100">
-<header>
-  <!-- Fixed navbar -->
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="#">Italian Delights</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/ingredients">Ingredients</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/menuitems">Menu Items</a>
-        </li>
-        <!-- <li class="nav-item">
-            <a class="nav-link" href="/recipes">Recipes</a>
-        </li> -->
-        <li class="nav-item">
-            <a class="nav-link" href="/orders">Orders</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/sales">Total sales</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-</header>
-<!-- Begin page content -->
-<main role="main" class="flex-shrink-0">
-    {% block content %}
-    <div class="container">
-        <h1 class="mt-5">Welcome to Italian Delights</h1>
-        <p class="lead">To begin, please select an option from above</p>
-    </div>
-    {% endblock %}  
-</main>
-<footer class="footer mt-auto py-3">
-  <div class="container">
-    <span class="text-muted">&copy; Italian Delights 2023</span>
-  </div>
-</footer>
+    <header>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Italian Delights</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/ingredients">Ingredients</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/menuitems">Menu Items</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/orders">Orders</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/sales">Total sales</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <!-- Begin page content -->
+    <main role="main" class="flex-shrink-0">
+        {% block content %}
+        <div class="container">
+            <h1 class="mt-5">Welcome to Italian Delights</h1>
+            <p class="lead">To begin, please select an option from above</p>
+        </div>
+        {% endblock %}  
+    </main>
+    <footer class="footer mt-auto py-3">
+      <div class="container">
+        <span class="text-muted">&copy; Italian Delights 2023</span>
+      </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   </body>
 </html>
+

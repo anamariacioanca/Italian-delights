@@ -2,11 +2,14 @@
 {% block title %} Delete Menu Item - {{ block.super }}{% endblock %}
 
 {% block content %}
-  <h2>Delete Menu Item</h2>
+<div class="container">
+  <h3 class="mt-5">Delete Menu Item</h3>
   <p>Are you sure you want to delete "{{ object.title }}"?</p>
   <form method="POST" action="">
     {% csrf_token %}
-    <button type="submit">Confirm</button>
+    <button class="btn btn-danger" type="submit">Delete</button>
   </form>
-  <a href="{% url 'menuitems' %}">Cancel</a>
+  <hr>
+  <a href="{% url 'menuitems' %}" class="btn btn-secondary">Cancel</a>
+</div>    
 {% endblock %}

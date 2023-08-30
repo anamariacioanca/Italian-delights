@@ -2,10 +2,12 @@
 {% block title %} Edit Menu Item - {{ block.super }}{% endblock %}
 
 {% block content %}
-  <h2>Edit Menu Item</h2>
+<div class="container">
+  <h3 class="mt-5">Edit Menu Item</h3>
   <form method="POST" action="">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Save Changes</button>
+    <button class="btn btn-warning" type="submit">Save Changes</button>
   </form>
+</div>  
 {% endblock %}
