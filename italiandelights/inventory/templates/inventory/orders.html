@@ -2,25 +2,30 @@
 {% block title %} Orders - {{ block.super }}{% endblock %}
 
 {% block content %}
-  <h2>Orders</h2>
-  <a href="{% url 'ordercreate' %}"><button class="btn">Add order</button></a>
-  <table id="orders">
-    <tr>
-      <th>Menu Items</th>
-      <th>Time</th>
-      <th> </th>
-      <th> </th>
-    </tr>
+<div class="container">
+  <h3 class="mt-5">Orders</h3>
+  <a href="{% url 'ordercreate' %}"><button class="btn btn-success my-5">Create Order</button></a>
+  <table class="table table-bordered table-sm">
+    <thead class="thead-dark">
+      <tr>
+        <th>Timestamp</th>
+        <th>Menu Items</th>
+        <th>Total Price</th> 
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>  
     {% for order in object_list %}
     <tr>
+      <td>{{ order.timestamp }}</td>
       <td>
-        {% for item in order.menu_items.all %}
-          {{ item.title }}{% if not forloop.last %}, {% endif %}
+        {% for menu_item in order.menu_items.all %}
+          {{ menu_item.title }}{% if not forloop.last %}, {% endif %}
         {% endfor %}
       </td>
-      <td>{{ order.timestamp }}</td>
-      <td><a href="{% url 'orderupdate' order.pk %}"><button>Edit</button></a></td>
-      <td><a href="{% url 'orderdelete' order.pk %}"><button>Delete</button></a></td>
+      <td>{{ order.total_price }}</td> 
+      <td><a href="{% url 'orderupdate' order.pk %}"><button class="btn btn-warning">Edit</button></a></td>
+      <td><a href="{% url 'orderdelete' order.pk %}"><button class="btn btn-danger">Delete</button></a></td>
     </tr>
     {% endfor %}
   </table>
