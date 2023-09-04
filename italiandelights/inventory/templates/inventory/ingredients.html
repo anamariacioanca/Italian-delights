@@ -4,15 +4,23 @@
 {% block content %}
 <div class="container">
   <h2 class="mt-5">Ingredients</h2>
-  <a href="{% url 'ingredientcreate' %}"><button class="btn btn-success my-5">Add ingredient</button></a>
+  {% if perms.inventory.add_ingredient %}
+    <a href="{% url 'ingredientcreate' %}">
+      <button class="btn btn-success my-5">Add ingredient</button>
+    </a>
+  {% endif %}
   <table class="table table-bordered table-sm">
     <thead class="thead-dark">
       <tr>
         <th>Name</th>
         <th>Quantity</th>
         <th>Unit</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        {% if perms.inventory.edit_ingredient %}
+          <th>Edit</th>
+        {% endif %}
+        {% if perms.inventory.delete_ingredient %}
+          <th>Delete</th>
+        {% endif %}
       </tr>
     </thead>  
     {% for ingredient in object_list %}
@@ -20,11 +28,16 @@
       <td>{{ ingredient.name }}</td>
       <td>{{ ingredient.quantity }}</td>
       <td>{{ ingredient.unit }}</td>
-      <td><a href="{% url 'ingredientupdate' ingredient.pk %}"><button class="btn btn-warning">Edit</button></a></td>
-      <td><a href="{% url 'ingredientdelete' ingredient.pk %}"><button class="btn btn-danger">Delete</button></a></td>
+      {% if perms.inventory.edit_ingredient %}
+        <td><a href="{% url 'ingredientupdate' ingredient.pk %}"><button class="btn btn-warning">Edit</button></a></td>
+      {% endif %}
+      {% if perms.inventory.delete_ingredient %}
+        <td><a href="{% url 'ingredientdelete' ingredient.pk %}"><button class="btn btn-danger">Delete</button></a></td>
+      {% endif %}
     </tr>
     {% endfor %}
   </table>
 </div>  
 {% endblock %}
+
 

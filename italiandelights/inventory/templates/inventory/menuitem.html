@@ -4,25 +4,36 @@
 {% block content %}
 <div class="container">
   <h2 class="mt-5">Menu Items</h2>
-  <a href="{% url 'menuitemcreate' %}"><button class="btn btn-success my-5">Add Menu Item</button></a>
+  {% if perms.inventory.add_menuitem %}
+    <a href="{% url 'menuitemcreate' %}">
+      <button class="btn btn-success my-5">Add Menu Item</button>
+    </a>
+  {% endif %}
   <table class="table table-bordered table-sm">
     <thead class="thead-dark">
       <tr>
         <th>Title</th>
         <th>Price</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        {% if perms.inventory.edit_menuitem %}
+          <th>Edit</th>
+        {% endif %}
+        {% if perms.inventory.delete_menuitem %}
+          <th>Delete</th>
+        {% endif %}
       </tr>
     </thead>
     {% for item in object_list %}
     <tr>
       <td>{{ item.title }}</td>
       <td>{{ item.price }}</td>
-      <td><a href="{% url 'menuitemupdate' item.pk %}"><button class="btn btn-warning">Edit</button></a></td>
-      <td><a href="{% url 'menuitemdelete' item.pk %}"><button class="btn btn-danger">Delete</button></a></td>
+      {% if perms.inventory.edit_menuitem %}
+        <td><a href="{% url 'menuitemupdate' item.pk %}"><button class="btn btn-warning">Edit</button></a></td>
+      {% endif %}
+      {% if perms.inventory.delete_menuitem %}
+        <td><a href="{% url 'menuitemdelete' item.pk %}"><button class="btn btn-danger">Delete</button></a></td>
+      {% endif %}
     </tr>
     {% endfor %}
   </table>
 </div>  
 {% endblock %}
-
