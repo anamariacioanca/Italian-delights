@@ -4,6 +4,8 @@ from django.db.models import Sum
 # Create your models here.
 
 class Ingredient(models.Model):
+    class Meta:
+        ordering = ['name']
     name = models.CharField(max_length=50)
     quantity = models.FloatField(default=0)
     unit = models.CharField(max_length=10)
@@ -12,6 +14,8 @@ class Ingredient(models.Model):
         return f"{self.name}"
 
 class MenuItem(models.Model):
+    class Meta:
+        ordering = ['title']
     title = models.CharField(max_length=75)
     price = models.FloatField(help_text="Enter the menu price")
 
@@ -19,6 +23,8 @@ class MenuItem(models.Model):
         return f"{self.title}"
     
 class Order(models.Model):
+    class Meta:
+        ordering = ['-timestamp']
     menu_items = models.ManyToManyField(MenuItem)
     timestamp = models.DateTimeField(auto_now_add=True)
     total_price = models.FloatField(default=0)
