@@ -42,6 +42,8 @@ class Order(models.Model):
         return sum(menu_item.price for menu_item in self.menu_items.all())
 
 class TotalSales(models.Model):
+    class Meta:
+        verbose_name_plural = "Total Sales"
     date = models.DateField(unique=True)
     total_order_price = models.FloatField(default=0)
     total_all_orders_price = models.FloatField(default=0)
