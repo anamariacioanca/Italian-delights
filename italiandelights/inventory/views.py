@@ -89,11 +89,24 @@ class OrderCreate(CreateView):
         return super().form_valid(form)
 
 class OrderUpdate(UpdateView):
-  model = Order
-  template_name = "inventory/order_update_form.html"  
-  fields = ["menu_items"]  
-  success_url = reverse_lazy("orders")
+    model = Order
+    template_name = "inventory/order_update_form.html"
+    fields = ["menu_items"]
+    success_url = reverse_lazy("orders")
 
+    def form_valid(self, form):
+        order = form.save(commit=False)
+        order.menu_items.clear()  # Clear existing menu items to avoid duplicates
+
+        selected_menu_items_ids = self.request.POST.getlist('menu_items')
+        selected_menu_items = MenuItem.objects.filter(pk__in=selected_menu_items_ids)
+        order.menu_items.add(*selected_menu_items)
+
+        order.total_price = order.calculate_total_price()
+        order.save()
+
+        return super().form_valid(form)
+    
 class OrderDelete(DeleteView):
   model = Order
   template_name = "inventory/order_delete_form.html"  
